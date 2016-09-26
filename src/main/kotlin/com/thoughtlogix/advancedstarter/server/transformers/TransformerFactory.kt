@@ -22,15 +22,31 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.app.settings.system
+package com.thoughtlogix.advancedstarter.server.transformers
 
-class NetworkSettings {
+import com.thoughtlogix.advancedstarter.server.transformers.XmlTransformer
+import com.thoughtlogix.advancedstarter.server.transformers.HtmlTransformer
+import com.thoughtlogix.advancedstarter.server.transformers.JsonTransformer
+import com.thoughtlogix.advancedstarter.server.transformers.Transformer
 
-    var host = "localhost"
-    var port = "7011"
-    var staticFolder = "/public"
-    var smtpHost = ""
-    var smtpPort = ""
-    var smtpUsername = ""
-    var smtpPassword = ""
+object TransformerFactory {
+
+    val jsonTransformer = JsonTransformer()
+    val htmlTransformer = HtmlTransformer()
+    val xmlTransformer = XmlTransformer()
+
+    fun create(format: String?): Transformer? {
+
+        if (format == null) return null
+
+        if (format.contains("json")) {
+            return jsonTransformer
+        } else if (format.contains("html")) {
+            return htmlTransformer
+        } else if (format.contains("xml")) {
+            return xmlTransformer
+        } else {
+            return null
+        }
+    }
 }

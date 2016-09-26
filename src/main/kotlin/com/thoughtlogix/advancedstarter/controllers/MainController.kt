@@ -24,10 +24,11 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
+import com.thoughtlogix.advancedstarter.db.JPA
 import org.slf4j.LoggerFactory
 import spark.Spark.get
 
-class MainController() : Controller() {
+class MainController(jpa: JPA) : Controller(jpa) {
     override val logger = LoggerFactory.getLogger(MainController::class.java)
 
     init {
@@ -40,22 +41,22 @@ class MainController() : Controller() {
 
         get(baseRoutePath + "/") { rq, rs ->
             model.put("pageTitle", "Spark Advanced Starter")
-            out(model, templatePath + "/index.peb");
+            htmlOut(model, templatePath + "/index.peb");
         }
 
         get(baseRoutePath + "/features") { rq, rs ->
             model.put("pageTitle", "Features")
-            out(model, templatePath + "/features.peb");
+            htmlOut(model, templatePath + "/features.peb");
         }
 
         get(baseRoutePath + "/about") { rq, rs ->
             model.put("pageTitle", "About Us")
-            out(model, templatePath + "/about.peb");
+            htmlOut(model, templatePath + "/about.peb");
         }
 
         get(baseRoutePath + "/contact") { rq, rs ->
             model.put("pageTitle", "Contact Us")
-            out(model, templatePath + "/contact.peb");
+            htmlOut(model, templatePath + "/contact.peb");
         }
     }
 }

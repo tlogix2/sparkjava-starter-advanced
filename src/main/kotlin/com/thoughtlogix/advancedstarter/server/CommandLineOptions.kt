@@ -42,7 +42,7 @@ class CommandLineOptions {
     @Parameter(names = arrayOf("--server-host"), description = "Bind server to this host")
     val serverHost: String = "localhost"
     @Parameter(names = arrayOf("--server-port"), description = "Bind server to this port")
-    val serverPort: String = "4567"
+    val serverPort: String = "7011"
     @Parameter(names = arrayOf("--server-static"), description = "The path to static resources")
     val serverStaticPath: String = "/public"
 
@@ -57,5 +57,4 @@ class CommandLineOptions {
     val smtpUsername: String = ""
     @Parameter(names = arrayOf("--smtp-password"), description = "The SMTP password")
     val smtpPassword: String = ""
-
 }

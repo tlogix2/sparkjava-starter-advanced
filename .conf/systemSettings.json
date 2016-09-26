@@ -1,12 +1,4 @@
 {
-  "logger" : {
-    "name" : "com.example.app.settings.BaseSettings",
-    "traceEnabled" : false,
-    "debugEnabled" : false,
-    "infoEnabled" : true,
-    "warnEnabled" : true,
-    "errorEnabled" : true
-  },
   "generalSettings" : {
     "sendErrorViaEmail" : true,
     "sendErrorViaWebservice" : false,
@@ -22,7 +14,7 @@
   },
   "networkSettings" : {
     "host" : "localhost",
-    "port" : "7001",
+    "port" : "7011",
     "staticFolder" : "/public",
     "smtpHost" : "",
     "smtpPort" : "",

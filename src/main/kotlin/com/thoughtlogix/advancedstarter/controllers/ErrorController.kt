@@ -24,10 +24,11 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
+import com.thoughtlogix.advancedstarter.db.JPA
 import org.slf4j.LoggerFactory
 import spark.Spark.get
 
-class ErrorController : Controller() {
+class ErrorController(jpa:JPA) : Controller(jpa) {
     override val logger = LoggerFactory.getLogger(ErrorController::class.java)
 
     init {
@@ -37,28 +38,28 @@ class ErrorController : Controller() {
             res.status(401)
             model.put("title", "401 Unauthorized")
             model.put("msg", "Sorry...access denied.")
-            out(model, "/error.peb")
+            htmlOut(model, "/error.peb")
         }
 
         get("/403") { req, res ->
             res.status(403)
             model.put("title", "403 Forbidden")
             model.put("msg", "Sorry...access denied.")
-            out(model, "/error.peb")
+            htmlOut(model, "/error.peb")
         }
 
         get("/404") { req, res ->
             res.status(404)
             model.put("title", "404 Not Found")
             model.put("msg", "Sorry...where it went, we know not.")
-            out(model, "/error.peb")
+            htmlOut(model, "/error.peb")
         }
 
         get("/500") { req, res ->
             res.status(500)
             model.put("title", "500 Big Error")
             model.put("msg", "Something bad happened.  This error has been logged for review.")
-            out(model, "/error.peb")
+            htmlOut(model, "/error.peb")
         }
 
         get("/*") { req, res ->

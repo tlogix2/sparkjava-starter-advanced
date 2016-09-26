@@ -22,15 +22,19 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.app.settings.system
+package com.thoughtlogix.advancedstarter.server.transformers
 
-class NetworkSettings {
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.thoughtlogix.advancedstarter.server.ContextModel
+import spark.Request
 
-    var host = "localhost"
-    var port = "7011"
-    var staticFolder = "/public"
-    var smtpHost = ""
-    var smtpPort = ""
-    var smtpUsername = ""
-    var smtpPassword = ""
+import java.io.IOException
+
+interface Transformer {
+
+    @Throws(JsonProcessingException::class)
+    fun render(model: ContextModel, template: String): String
+
+    @Throws(IOException::class)
+    fun <T : Any> read(data: Request, className: Class<T>): T?
 }

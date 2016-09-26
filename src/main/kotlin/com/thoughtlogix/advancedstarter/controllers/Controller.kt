@@ -24,21 +24,27 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.thoughtlogix.advancedstarter.Server
+import com.thoughtlogix.advancedstarter.app.settings.system.DatabaseSettings
+import com.thoughtlogix.advancedstarter.db.JPA
 import com.thoughtlogix.advancedstarter.server.ContextModel
 import com.thoughtlogix.advancedstarter.server.DefaultTemplateEngine
 import com.thoughtlogix.advancedstarter.server.Flash
+import com.thoughtlogix.advancedstarter.server.transformers.TransformerFactory
 import org.slf4j.LoggerFactory
 import spark.Request
 import spark.Response
 import spark.Spark
+import java.io.IOException
 import java.util.*
 
-open class Controller {
+open class Controller(jpa: JPA) {
     open val logger = LoggerFactory.getLogger(Controller::class.java)
     private val EMPTY_STRING: String = "";
     private val templageEngine = DefaultTemplateEngine()
 
+    protected var jpa  = jpa
     protected var templatePath: String = ""
     protected var baseRoutePath: String = ""
     protected var model = ContextModel()
@@ -154,10 +160,72 @@ open class Controller {
 
 
     /**
-     * Render the output (in this case we only care about html format)
+     * Output the current context to the specified format
      */
-    fun out(model: ContextModel, template: String): String {
-        return templageEngine.render(model.getModel(), template)
+    fun out(model: ContextModel, format: String?, template: String?): String {
+
+        if (model == null || format == null || template == null) {
+            return EMPTY_STRING
+        }
+
+        try {
+            val transformer = TransformerFactory.create(format)
+            return transformer!!.render(model, template)
+        } catch (e: JsonProcessingException) {
+            logger.error(e.message, e)
+            return EMPTY_STRING
+        }
+
+    }
+
+    /**
+     * Output the current context using html templates
+     */
+    fun htmlOut(model: ContextModel, template: String?): String {
+        if (model == null || template == null) {
+            return EMPTY_STRING
+        }
+
+        try {
+            val hmtlTransformer = TransformerFactory.create("html")
+            return hmtlTransformer!!.render(model, template)
+        } catch (e: JsonProcessingException) {
+            logger.error(e.message, e)
+            return EMPTY_STRING
+        }
+
+    }
+
+    /**
+     * Output the current context to the specified serialized format
+     */
+    fun serializedOut(model: ContextModel, format: String?): String {
+        if (model == null || format == null) {
+            return EMPTY_STRING
+        }
+
+        try {
+            val transformer = TransformerFactory.create(format)
+            return transformer!!.render(model, "")
+        } catch (e: JsonProcessingException) {
+            logger.error(e.message, e)
+            return EMPTY_STRING
+        }
+
+    }
+
+    /**
+     * Convert incoming http data into the specified class
+     */
+    fun <T : Any> parseInput(data: Request, className: Class<T>, format: String): T? {
+        try {
+            val transformer = TransformerFactory.create(format)
+            return transformer!!.read(data, className)
+        } catch (e: IOException) {
+            logger.error(e.message, e)
+            return null
+        }
+
     }
 
     /**

@@ -64,7 +64,7 @@ class CommandLineOptionsTest {
         val options = CommandLineOptions()
         JCommander(options, *args)
 
-        Assert.assertEquals(options.serverPort, "4567")
+        Assert.assertEquals(options.serverPort, "7011")
         Assert.assertEquals(options.serverStaticPath, "/public")
         Assert.assertEquals(options.smtpHost, "")
         Assert.assertEquals(options.smtpPort, "")
