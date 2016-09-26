@@ -43,8 +43,6 @@ import javax.xml.bind.annotation.*
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity(name = "FileInfo")
 @Table(name = "file_info", indexes = arrayOf(Index(columnList = "name"), Index(columnList = "object_uuid"), Index(columnList = "object_uuid, type")))
-@FilterDefs(FilterDef(name = "scopeSecurity", parameters = arrayOf(ParamDef(name = "scopeId", type = "long"))))
-@Filters(Filter(name = "scopeSecurity", condition = "(scope_id = :scopeId or scope_id is null)"))
 class FileInfo : Model() {
 
     @XmlElement

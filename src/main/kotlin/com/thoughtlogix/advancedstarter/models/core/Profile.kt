@@ -43,8 +43,6 @@ import javax.xml.bind.annotation.XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity(name = "Profile")
 @Table(name = "profile", indexes = arrayOf(Index(columnList = "email"), Index(columnList = "age")))
-@FilterDefs(FilterDef(name = "scopeSecurity", parameters = arrayOf(ParamDef(name = "scopeId", type = "long"))))
-@Filters(Filter(name = "scopeSecurity", condition = "(scope_id = :scopeId or scope_id is null)"))
 open class Profile : Model() {
 
     @XmlElement

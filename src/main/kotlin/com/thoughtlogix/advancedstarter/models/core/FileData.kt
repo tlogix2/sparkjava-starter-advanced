@@ -36,8 +36,6 @@ import javax.persistence.Table
 @Entity(name = "FileData")
 @Table(name = "file_data")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@FilterDefs(FilterDef(name = "scopeSecurity", parameters = arrayOf(ParamDef(name = "scopeId", type = "long"))))
-@Filters(Filter(name = "scopeSecurity", condition = "(scope_id = :scopeId or scope_id is null)"))
 class FileData : Model() {
 
     @Basic(fetch = FetchType.LAZY)

@@ -41,8 +41,6 @@ import javax.xml.bind.annotation.XmlRootElement
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity(name = "Log")
 @Table(name = "log")
-@FilterDefs(FilterDef(name = "scopeSecurity", parameters = arrayOf(ParamDef(name = "scopeId", type = "long"))))
-@Filters(Filter(name = "scopeSecurity", condition = "(scope_id = :scopeId or scope_id is null)"))
 class Log : Model() {
 
     @XmlElement
