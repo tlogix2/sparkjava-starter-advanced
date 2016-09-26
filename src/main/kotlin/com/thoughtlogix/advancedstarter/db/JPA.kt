@@ -71,7 +71,7 @@ class JPA(databaseSettings: DatabaseSettings) {
     }
 
     /**
-     * Get the current (thread local) context (user info, session, other stuff).
+     * Get the current (thread local) context (user info, session, server stuff).
 
      * @return thread local context
      */

@@ -22,13 +22,14 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.utils.extensions
+package com.thoughtlogix.advancedstarter.server.extensions
 
 import com.thoughtlogix.advancedstarter.Lang
 import com.thoughtlogix.advancedstarter.models.core.Model
 import com.mitchellbosecke.pebble.extension.AbstractExtension
 import com.mitchellbosecke.pebble.extension.Filter
 import com.mitchellbosecke.pebble.extension.Function
+import com.thoughtlogix.advancedstarter.models.core.Starred
 import java.util.*
 
 class CoreExtension : AbstractExtension() {
@@ -42,8 +43,7 @@ class CoreExtension : AbstractExtension() {
     override fun getFunctions(): Map<String, Function> {
         val functions = HashMap<String, Function>()
         functions.put("existsIn", ExistsInFunction())
-//        functions.put("isStarred", IsStarred())
-//        functions.put("isLocked", IsLocked())
+        functions.put("isStarred", IsStarred())
         return functions
     }
 
@@ -87,45 +87,25 @@ class CoreExtension : AbstractExtension() {
         }
     }
 
-//    inner class IsStarred : Function {
-//
-//        override fun getArgumentNames(): List<String>? {
-//            val names = ArrayList<String>()
-//            names.add("starredList")
-//            names.add("model")
-//            names.add("username")
-//            return names
-//        }
-//
-//        override fun execute(args: Map<String, Any>): Any? {
-//            if (args == null || args["starredList"] == null || args["model"] == null || args["username"] == null) {
-//                return false
-//            }
-//            val starredList = args["starredList"] as List<Starred>
-//            val model = args["model"] as Model
-//            val username = args["username"] as String
-//
-//            return Starred.isStarred(starredList, model, username)
-//        }
-//    }
-//
-//    inner class IsLocked : Function {
-//
-//        override fun getArgumentNames(): List<String>? {
-//            val names = ArrayList<String>()
-//            names.add("lockedList")
-//            names.add("model")
-//            return names
-//        }
-//
-//        override fun execute(args: Map<String, Any>): Any? {
-//            if (args == null || args["lockedList"] == null || args["model"] == null) {
-//                return false
-//            }
-//            val lockedList = args["lockedList"] as List<SystemLock>
-//            val model = args["model"] as Model
-//
-//            return SystemLock.isLocked(lockedList, model)
-//        }
-//    }
+    inner class IsStarred : Function {
+
+        override fun getArgumentNames(): List<String>? {
+            val names = ArrayList<String>()
+            names.add("starredList")
+            names.add("model")
+            names.add("username")
+            return names
+        }
+
+        override fun execute(args: Map<String, Any>): Any? {
+            if (args == null || args["starredList"] == null || args["model"] == null || args["username"] == null) {
+                return false
+            }
+            val starredList = args["starredList"] as List<Starred>
+            val model = args["model"] as Model
+            val username = args["username"] as String
+
+            return Starred.isStarred(starredList, model, username)
+        }
+    }
 }

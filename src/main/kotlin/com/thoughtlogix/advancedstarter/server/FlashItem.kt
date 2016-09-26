@@ -22,41 +22,6 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.utils
+package com.thoughtlogix.advancedstarter.server
 
-import java.util.*
-
-/**
- * The ContextModel stores data for a request/responce lifecycle.
- */
-class ContextModel {
-    var model = ThreadLocal<HashMap<String, Any>>()
-
-    init {
-        reset()
-    }
-
-    fun put(key: String, value: Any) {
-        model.get().put(key, value);
-    }
-
-    fun getModel(): Map<String, Any> {
-        return model.get();
-    }
-
-    fun get(key: String): Any {
-        return model.get()[key]!!;
-    }
-
-    fun containsKey(key: String): Boolean {
-        return model.get().containsKey(key)
-    }
-
-    fun remove(key: String) {
-        model.get().remove(key)
-    }
-
-    fun reset() {
-        model.set(HashMap<String, Any>())
-    }
-}
+data class FlashItem(val message: String = "", val type: Int = 0)

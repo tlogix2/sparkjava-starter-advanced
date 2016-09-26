@@ -32,7 +32,7 @@ object Lang {
     private var bundle: ResourceBundle
 
     init {
-        bundle = ResourceBundle.getBundle("bundles.default", java.util.Locale("en", "US"))
+        bundle = ResourceBundle.getBundle("bundles.default", Locale("en", "US"))
     }
 
     /**
@@ -40,7 +40,7 @@ object Lang {
      */
     fun tr(key: String): String {
         try {
-            return com.thoughtlogix.advancedstarter.Lang.lookupValueInResourceBundle(key);
+            return lookupValueInResourceBundle(key);
         } catch (ex: Exception) {
             return key
         }

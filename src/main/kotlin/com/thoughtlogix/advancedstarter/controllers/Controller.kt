@@ -25,9 +25,9 @@
 package com.thoughtlogix.advancedstarter.controllers
 
 import com.thoughtlogix.advancedstarter.Server
-import com.thoughtlogix.advancedstarter.utils.ContextModel
-import com.thoughtlogix.advancedstarter.utils.DefaultTemplateEngine
-import com.thoughtlogix.advancedstarter.utils.Flash
+import com.thoughtlogix.advancedstarter.server.ContextModel
+import com.thoughtlogix.advancedstarter.server.DefaultTemplateEngine
+import com.thoughtlogix.advancedstarter.server.Flash
 import org.slf4j.LoggerFactory
 import spark.Request
 import spark.Response

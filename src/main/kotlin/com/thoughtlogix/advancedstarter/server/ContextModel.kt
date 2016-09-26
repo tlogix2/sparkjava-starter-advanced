@@ -22,34 +22,41 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.utils
+package com.thoughtlogix.advancedstarter.server
 
+import java.util.*
 
-import com.mitchellbosecke.pebble.PebbleEngine
-import com.mitchellbosecke.pebble.error.PebbleException
-import java.io.IOException
-import java.io.StringWriter
-
-class DefaultTemplateEngine {
-
-    private val engine: PebbleEngine
-    private val basepath: String = "templates"
+/**
+ * The ContextModel stores data for a request/responce lifecycle.
+ */
+class ContextModel {
+    var model = ThreadLocal<HashMap<String, Any>>()
 
     init {
-        this.engine = PebbleEngine.Builder().build();
+        reset()
     }
 
-    @SuppressWarnings("unchecked")
-    fun render(model: Map<String, Any>, template: String): String {
-        try {
-            val writer: StringWriter = StringWriter()
-            val template = engine.getTemplate(basepath + template)
-            template.evaluate(writer, model as Map<String, Any>)
-            return writer.toString()
-        } catch (e: PebbleException) {
-            throw IllegalArgumentException(e)
-        } catch (e: IOException) {
-            throw IllegalArgumentException(e)
-        }
+    fun put(key: String, value: Any) {
+        model.get().put(key, value);
+    }
+
+    fun getModel(): Map<String, Any> {
+        return model.get();
+    }
+
+    fun get(key: String): Any {
+        return model.get()[key]!!;
+    }
+
+    fun containsKey(key: String): Boolean {
+        return model.get().containsKey(key)
+    }
+
+    fun remove(key: String) {
+        model.get().remove(key)
+    }
+
+    fun reset() {
+        model.set(HashMap<String, Any>())
     }
 }

@@ -25,6 +25,7 @@
 package com.thoughtlogix.advancedstarter.utils
 
 import com.thoughtlogix.advancedstarter.models.constants.FlashMessageType
+import com.thoughtlogix.advancedstarter.server.Flash
 import org.testng.Assert
 import org.testng.annotations.Test
 

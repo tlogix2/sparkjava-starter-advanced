@@ -30,7 +30,7 @@ import com.thoughtlogix.advancedstarter.controllers.ErrorController
 import com.thoughtlogix.advancedstarter.controllers.MainController
 import com.thoughtlogix.advancedstarter.db.JPA
 import com.thoughtlogix.advancedstarter.db.SeedData
-import com.thoughtlogix.advancedstarter.utils.CommandLineOptions
+import com.thoughtlogix.advancedstarter.server.CommandLineOptions
 import com.thoughtlogix.advancedstarter.utils.Memory
 import org.slf4j.LoggerFactory
 import spark.Spark.*

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.utils
+package com.thoughtlogix.advancedstarter.server
 
 import com.thoughtlogix.advancedstarter.models.constants.FlashMessageType
 import java.util.*

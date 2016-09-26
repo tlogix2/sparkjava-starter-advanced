@@ -22,6 +22,35 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.utils
+package com.thoughtlogix.advancedstarter.server
 
-data class FlashItem(val message: String = "", val type: Int = 0)
+
+import com.mitchellbosecke.pebble.PebbleEngine
+import com.mitchellbosecke.pebble.error.PebbleException
+import com.thoughtlogix.advancedstarter.server.extensions.CoreExtension
+import java.io.IOException
+import java.io.StringWriter
+
+class DefaultTemplateEngine {
+
+    private val engine: PebbleEngine
+    private val basepath: String = "templates"
+
+    init {
+        this.engine = PebbleEngine.Builder().extension(CoreExtension()).build();
+    }
+
+    @SuppressWarnings("unchecked")
+    fun render(model: Map<String, Any>, template: String): String {
+        try {
+            val writer: StringWriter = StringWriter()
+            val template = engine.getTemplate(basepath + template)
+            template.evaluate(writer, model as Map<String, Any>)
+            return writer.toString()
+        } catch (e: PebbleException) {
+            throw IllegalArgumentException(e)
+        } catch (e: IOException) {
+            throw IllegalArgumentException(e)
+        }
+    }
+}
