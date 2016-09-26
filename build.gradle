@@ -1,0 +1,218 @@
+/*
+MIT License
+
+Copyright (c) 2016 Thought Logix
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+group 'com.thoughtlogix'
+version '1.0-SNAPSHOT'
+
+////////////////////////////////////////////////////////////////////
+// COMMON BUILD SCRIPT SETUP
+////////////////////////////////////////////////////////////////////
+buildscript {
+    ext.kotlin_version = '1.0.3'
+    ext.spark_version = '2.5'
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath group: 'org.yaml', name: 'snakeyaml', version: '1.15'
+        classpath group: 'com.h2database', name: 'h2', version: '1.4.187'
+        classpath group: 'mysql', name: 'mysql-connector-java', version: '5.1.34'
+        classpath group: 'net.sourceforge.jtds', name: 'jtds', version: '1.3.1'
+        classpath group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'project-report'
+apply plugin: 'idea'
+apply plugin: "jacoco"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile("com.sparkjava:spark-core:$spark_version")
+    compile 'com.mitchellbosecke:pebble:2.2.2'
+    compile group: 'com.sparkjava', name: 'spark-debug-tools', version: '0.5'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.2'
+    compile group: 'com.beust', name: 'jcommander', version: '1.48'
+
+    // Unique to Sparkjava advanced starter
+    compile 'commons-beanutils:commons-beanutils:1.9.2'
+    compile 'org.apache.httpcomponents:httpclient:4.5'
+    compile 'org.apache.httpcomponents:httpmime:4.5'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.15'
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.1'
+    compile group: 'org.apache.commons', name: 'commons-email', version: '1.4'
+    compile group: 'org.apache.commons', name: 'commons-exec', version: '1.3'
+    compile group: 'org.apache.commons', name: 'commons-compress', version: '1.9'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.7.4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.7.4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.4'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.7.4'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.0.rc2"
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.7.4'
+    compile group: 'dom4j', name: 'dom4j', version: '1.6.1'
+    compile group: 'javax.el', name: 'javax.el-api', version: '2.2.4'
+    compile group: 'org.glassfish.web', name: 'javax.el', version: '2.2.4'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.4.Final'
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.1.0.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+    compile group: 'org.jboss', name: 'jandex', version: '1.1.0.Final'
+    compile group: 'org.javassist', name: 'javassist', version: '3.18.1-GA'
+    compile group: 'org.jboss.logging', name: 'jboss-logging', version: '3.1.3.GA'
+    compile group: 'org.jboss.logging', name: 'jboss-logging-annotations', version: '1.2.0.Beta1'
+    compile group: 'org.jboss.spec.javax.transaction', name: 'jboss-transaction-api_1.2_spec', version: '1.0.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.1.0.Final'
+    compile 'org.hibernate:hibernate-tools:5.1.0.Alpha3'
+    compile 'org.reflections:reflections:0.9.10'
+    compile 'org.knowm:sundial:2.1.1'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.34'
+    compile 'org.postgresql:postgresql:9.4.1208'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.191'
+
+
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+    testCompile 'org.fluentlenium:fluentlenium-core:0.13.1'
+    testCompile 'org.fluentlenium:fluentlenium-testng:0.13.1'
+    testCompile 'org.assertj:assertj-core:3.4.1'
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.52.0'
+    testCompile 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.52.0'
+}
+
+
+////////////////////////////////////////////////////////////////////
+// TESTING STUFF
+////////////////////////////////////////////////////////////////////
+dependencies {
+    testCompile 'io.kotlintest:kotlintest:1.3.1'
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+}
+
+test {
+    minHeapSize = "256m"
+    maxHeapSize = "1024m"
+    testLogging.showStandardStreams = true
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+    useTestNG() {
+    }
+}
+
+task testingUnit(type: Test, dependsOn: 'test') {
+    group = 'sparkstarter'
+    useTestNG() {
+        excludeGroups 'performance', 'integration', 'concurrency'
+    }
+}
+
+task testingIntegration(type: Test, dependsOn: 'test') {
+    group = 'sparkstarter'
+    useTestNG() {
+        includeGroups 'integration'
+    }
+}
+
+task testingPerformance(type: Test, dependsOn: 'test') {
+    group = 'sparkstarter'
+    useTestNG() {
+        includeGroups 'performance'
+    }
+}
+
+task testingConcurrency(type: Test, dependsOn: 'test') {
+    group = 'sparkstarter'
+    useTestNG() {
+        includeGroups 'concurrency'
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////
+// APPLICATION PLUGIN CONFIG
+////////////////////////////////////////////////////////////////////
+mainClassName = "com.example.MainKt"
+
+
+////////////////////////////////////////////////////////////////////
+// CUSTOM TASKS
+////////////////////////////////////////////////////////////////////
+task runServer(type: JavaExec) {
+    group = 'sparkstarter'
+    main = "com.example.MainKt"
+    classpath = sourceSets.main.runtimeClasspath
+    maxHeapSize = "1024m"
+    dependsOn(build)
+}
+
+////////////////////////////////////////////////////////////////////
+// HELPER TASKS
+////////////////////////////////////////////////////////////////////
+//task _copyToLib(type: Copy) {
+//    into "$buildDir/libs"
+//    from configurations.runtime
+//}
+//
+//task _copyToDist(type: Copy) {
+//    into "dist/lib"
+//    from "$buildDir/libs"
+//}
+//build.dependsOn([_copyToLib, _copyToDist])
+
+tasks.withType(JavaCompile) {
+    options.warnings = false
+    options.deprecation = false
+    options.verbose = false
+    options.failOnError = false
+}
+
+////////////////////////////////////////////////////////////////////
+// CODE COVERAGE
+////////////////////////////////////////////////////////////////////
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport

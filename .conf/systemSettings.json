@@ -1,0 +1,32 @@
+{
+  "logger" : {
+    "name" : "com.example.app.settings.BaseSettings",
+    "traceEnabled" : false,
+    "debugEnabled" : false,
+    "infoEnabled" : true,
+    "warnEnabled" : true,
+    "errorEnabled" : true
+  },
+  "generalSettings" : {
+    "sendErrorViaEmail" : true,
+    "sendErrorViaWebservice" : false,
+    "debug" : false
+  },
+  "databaseSettings" : {
+    "databaseEngineId" : "H2",
+    "database" : "sas",
+    "host" : "",
+    "port" : "",
+    "username" : "sa",
+    "password" : ""
+  },
+  "networkSettings" : {
+    "host" : "localhost",
+    "port" : "7001",
+    "staticFolder" : "/public",
+    "smtpHost" : "",
+    "smtpPort" : "",
+    "smtpUsername" : "",
+    "smtpPassword" : ""
+  }
+}
