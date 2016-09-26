@@ -3,7 +3,7 @@
 
 # Sparkjava Advanced Starter
 
-The sparkjava advanced starter provides a seed or example project using Spark, Kotlin, Gradle, Hibernate and Jackson.  If are loking for something lighter, try the [SparkJava Simple Starter](https://github.com/thoughtlogix/sparkjava-starter-simple) project.
+The sparkjava advanced starter provides a seed / boilerplate / example project using Spark, Kotlin, Gradle, Hibernate, Jackson and more.  If you are looking for something lighter, try the [SparkJava Simple Starter](https://github.com/thoughtlogix/sparkjava-starter-simple) project.
 
 ## Features and Limitations
 
