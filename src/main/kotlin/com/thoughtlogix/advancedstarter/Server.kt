@@ -117,8 +117,9 @@ class Server : SparkApplication {
     }
 
     private fun initControllers() {
-        MainController()
-        ErrorController()
+        MainController(jpa!!)
+//        UserController(jpa!!)
+        ErrorController(jpa!!)
     }
 
     private fun parseArgs(args: Array<String>) {
