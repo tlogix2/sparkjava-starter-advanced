@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
-import com.thoughtlogix.advancedstarter.Server
 import com.thoughtlogix.advancedstarter.db.JPA
 import com.thoughtlogix.advancedstarter.db.PageParams
 import com.thoughtlogix.advancedstarter.models.core.Log
@@ -230,7 +229,16 @@ open class AbstractController @JvmOverloads constructor(protected var jpa: JPA? 
         log.createdAt = Date()
         log.createdBy = if (model.get("user") != null) (model.get("user") as User).username else ""
         logService.save(log)
-        logger.info(log.toString())
+        logger.info(String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s",
+                log.session,
+                log.createdAt,
+                log.createdBy,
+                log.domain,
+                log.publicIp,
+                log.module,
+                log.action,
+                log.requestMethod,
+                log.format))
     }
 
     /**
@@ -451,134 +459,134 @@ open class AbstractController @JvmOverloads constructor(protected var jpa: JPA? 
         flash.addError((model.get("user") as User).authToken!!, msg)
     }
 
-        private val  EMPTY_STRING: String = ""
+    private val EMPTY_STRING: String = ""
 
-        /**
-         * Parse page parameters for database use
-         */
-        fun getPageParams(req: Request, res: Response): PageParams {
+    /**
+     * Parse page parameters for database use
+     */
+    fun getPageParams(req: Request, res: Response): PageParams {
 
-            var page = 0
-            if (req.queryParams("page") != null && !req.queryParams("page").equals("0", ignoreCase = true)) {
-                page = Integer.parseInt(req.queryParams("page"))
-                page--
-            }
-
-            val pageParams = PageParams()
-            pageParams.page = page
-            pageParams.size = if (req.queryParams("size") != null) Integer.parseInt(req.queryParams("size")) else 15
-            pageParams.order = if (req.queryParams("order") != null) req.queryParams("order") else "id"
-            pageParams.sort = if (req.queryParams("sort") != null) req.queryParams("sort") else "desc"
-            pageParams.filter = if (req.queryParams("filter") != null) req.queryParams("filter") else ""
-            pageParams.expression = if (req.queryParams("expression") != null) req.queryParams("expression") else ""
-
-            pageParams.setLastOrder(getCookie(req, "order") ?: "id")
-            pageParams.setLastSort(getCookie(req, "sort") ?: "desc")
-
-            res.cookie("order", pageParams.order)
-            res.cookie("sort", pageParams.sort)
-
-            return pageParams
+        var page = 0
+        if (req.queryParams("page") != null && !req.queryParams("page").equals("0", ignoreCase = true)) {
+            page = Integer.parseInt(req.queryParams("page"))
+            page--
         }
 
-        fun setCookie(res: Response, name: String, value: String) {
-            //            res.cookie("/", name, value, -1, false, true)
-            res.cookie(name, value)
-        }
+        val pageParams = PageParams()
+        pageParams.page = page
+        pageParams.size = if (req.queryParams("size") != null) Integer.parseInt(req.queryParams("size")) else 15
+        pageParams.order = if (req.queryParams("order") != null) req.queryParams("order") else "id"
+        pageParams.sort = if (req.queryParams("sort") != null) req.queryParams("sort") else "desc"
+        pageParams.filter = if (req.queryParams("filter") != null) req.queryParams("filter") else ""
+        pageParams.expression = if (req.queryParams("expression") != null) req.queryParams("expression") else ""
 
-        fun getCookie(req: Request, name: String): String? {
-            return req.cookie(name)
-        }
+        pageParams.setLastOrder(getCookie(req, "order") ?: "id")
+        pageParams.setLastSort(getCookie(req, "sort") ?: "desc")
 
-        /**
-         * Common end jpa transaction
-         */
-        fun endTransaction() {
-            with(jpa!!) {
-                try {
-                    commitTransaction()
-                } catch (ex: Exception) {
-                    logger.error(ex.message, ex)
-                    rollbackTransaction()
-                    throw ex
-                } finally {
-                    closeEntityManager()
-                }
-            }
+        res.cookie("order", pageParams.order)
+        res.cookie("sort", pageParams.sort)
 
-        }
+        return pageParams
+    }
 
-        /**
-         * Redirect to the specific path
-         */
-        fun redirect(res: Response, path: String): String {
-            res.redirect(path)
-            endTransaction()
+    fun setCookie(res: Response, name: String, value: String) {
+        //            res.cookie("/", name, value, -1, false, true)
+        res.cookie(name, value)
+    }
+
+    fun getCookie(req: Request, name: String): String? {
+        return req.cookie(name)
+    }
+
+    /**
+     * Common end jpa transaction
+     */
+    fun endTransaction() {
+        with(jpa!!) {
             try {
-                halt();
-            } catch(e: Exception) {
-                //eat it
+                commitTransaction()
+            } catch (ex: Exception) {
+                logger.error(ex.message, ex)
+                rollbackTransaction()
+                throw ex
+            } finally {
+                closeEntityManager()
             }
-
-            return EMPTY_STRING
         }
 
+    }
 
-        /**
-         * Redirect to the specific path if the object is null
-         */
-        fun redirectIfNull(res: Response, obj: Any?): String {
-            if (obj == null) {
-                redirect(res, "/404")
-            }
-            return EMPTY_STRING
+    /**
+     * Redirect to the specific path
+     */
+    fun redirect(res: Response, path: String): String {
+        res.redirect(path)
+        endTransaction()
+        try {
+            halt();
+        } catch(e: Exception) {
+            //eat it
         }
 
-        /**
-         * Redirect to 404 if the object is null
-         */
-        fun redirect404IfNull(res: Response, obj: Any?): String {
-            if (obj == null) {
-                redirect(res, "/404")
-            }
-            return EMPTY_STRING
-        }
+        return EMPTY_STRING
+    }
 
-        /**
-         * Return the format (i.e. json, html, xml) of the request.
-         */
-        fun getFormat(req: Request): String {
-            val accept = req.headers("Accept") ?: return "html"
 
-            if (accept.contains("html"))
-                return "html"
-            else if (accept.contains("xml"))
-                return "xml"
-            else if (accept.contains("json"))
-                return "json"
-            else
-                return "html"
+    /**
+     * Redirect to the specific path if the object is null
+     */
+    fun redirectIfNull(res: Response, obj: Any?): String {
+        if (obj == null) {
+            redirect(res, "/404")
         }
+        return EMPTY_STRING
+    }
 
-        /**
-         * Is HTML request
-         */
-        fun isHtml(req: Request): Boolean {
-            return getFormat(req).contains("html")
+    /**
+     * Redirect to 404 if the object is null
+     */
+    fun redirect404IfNull(res: Response, obj: Any?): String {
+        if (obj == null) {
+            redirect(res, "/404")
         }
+        return EMPTY_STRING
+    }
 
-        /**
-         * Is JSON request
-         */
-        fun isJson(req: Request): Boolean {
-            return getFormat(req).contains("json")
-        }
+    /**
+     * Return the format (i.e. json, html, xml) of the request.
+     */
+    fun getFormat(req: Request): String {
+        val accept = req.headers("Accept") ?: return "html"
 
-        /**
-         * Is XML request
-         */
-        fun isXml(req: Request): Boolean {
-            return getFormat(req).contains("xml")
-        }
+        if (accept.contains("html"))
+            return "html"
+        else if (accept.contains("xml"))
+            return "xml"
+        else if (accept.contains("json"))
+            return "json"
+        else
+            return "html"
+    }
+
+    /**
+     * Is HTML request
+     */
+    fun isHtml(req: Request): Boolean {
+        return getFormat(req).contains("html")
+    }
+
+    /**
+     * Is JSON request
+     */
+    fun isJson(req: Request): Boolean {
+        return getFormat(req).contains("json")
+    }
+
+    /**
+     * Is XML request
+     */
+    fun isXml(req: Request): Boolean {
+        return getFormat(req).contains("xml")
+    }
 
 }

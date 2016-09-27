@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,6 @@
 package com.thoughtlogix.advancedstarter.app.settings.system
 
 import com.thoughtlogix.advancedstarter.app.settings.BaseSettings
-import com.thoughtlogix.advancedstarter.app.settings.system.DatabaseSettings
-import com.thoughtlogix.advancedstarter.app.settings.system.GeneralSettings
-import com.thoughtlogix.advancedstarter.app.settings.system.NetworkSettings
 
 class SystemSettings(var generalSettings: GeneralSettings = GeneralSettings(),
                      var databaseSettings: DatabaseSettings = DatabaseSettings(),

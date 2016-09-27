@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,14 +27,8 @@ package com.thoughtlogix.advancedstarter.controllers
 import com.infoquant.gf.server.controllers.manager.ManagerController
 import com.thoughtlogix.advancedstarter.Lang
 import com.thoughtlogix.advancedstarter.db.JPA
-import com.thoughtlogix.advancedstarter.db.PageParams
-import com.thoughtlogix.advancedstarter.db.PagedData
-import com.thoughtlogix.advancedstarter.models.tools.Todo
-import com.thoughtlogix.advancedstarter.models.users.User
+import com.thoughtlogix.advancedstarter.models.examples.Todo
 import com.thoughtlogix.advancedstarter.services.db.TodoDbService
-import com.thoughtlogix.advancedstarter.services.db.UserDbService
-import org.slf4j.LoggerFactory
-import spark.Spark.get
 
 class TodoController(jpa: JPA) : ManagerController<Todo>(Todo::class.java, jpa) {
 

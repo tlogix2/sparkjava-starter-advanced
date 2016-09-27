@@ -5,7 +5,7 @@
     <thead>
     <tr>
         <th>{{ sortable('title', 'title', basePath, pageParams) | raw }}</th>
-        <th>{{ sortable('isCompleted', 'isCompleted', basePath, pageParams) | raw }}</th>
+        <th>{{ sortable('isComplete', 'isComplete', basePath, pageParams) | raw }}</th>
         <th>{{ sortable('notes', 'notes', basePath, pageParams) | raw }}</th>
         <th>{{ sortable('updatedAt', 'updatedAt', basePath, pageParams) | raw }}</th>
         <th>{{ sortable('updatedBy', 'updatedBy', basePath, pageParams) | raw }}</th>
@@ -17,7 +17,7 @@
         <tr>
             <td><a href="{{ basePath }}/{{ item.id }}"
                    title="{{ item.title }}">{{ item.title }}</a></td>
-            <td>{{ item.isCompleted }}</td>
+            <td>{{ item.isComplete }}</td>
             <td>{{ item.notes }}</td>
             <td>{{ item.updatedAt | date("d MMM yyyy HH:mm:ss") }}</td>
             <td>{{ item.updatedBy }}</td>

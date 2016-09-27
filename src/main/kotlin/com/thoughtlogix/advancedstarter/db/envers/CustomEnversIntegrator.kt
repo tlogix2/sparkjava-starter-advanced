@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 package com.thoughtlogix.advancedstarter.db.envers
 
-import com.thoughtlogix.advancedstarter.db.JPA
 import org.hibernate.boot.Metadata
 import org.hibernate.engine.spi.SessionFactoryImplementor
 import org.hibernate.envers.boot.internal.EnversService

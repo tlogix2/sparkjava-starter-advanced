@@ -3,51 +3,26 @@
 
 <input type="hidden" name="{{ className }}[id]" id="{{ className }}_id"
        value="{{ item.id }}"/>
-<input type="hidden" name="{{ className }}[ref]" id="{{ className }}_ref"
-       value="{{ item.ref }}"/>
-<input type="hidden" name="{{ className }}[uuid]" id="{{ className }}_uuid"
-       value="{{ item.uuid }}"/>
 <input type="hidden" name="{{ className }}[version]"
        id="{{ className }}_version" value="{{ item.version }}"/>
 
 <div class="form-group">
-    <label for="{{ className }}_name">{{ "name" | tr }}</label>
-    <input class="form-control" type="text" name="{{ className }}[name]"
-           value="{{ item.name }}" id="{{ className }}_name" required/>
+    <label for="{{ className }}_title">{{ "title" | tr }}</label>
+    <input class="form-control" type="text" name="{{ className }}[title]"
+           value="{{ item.title }}" id="{{ className }}_title" required/>
 </div>
 <div class="form-group">
-    <label for="{{ className }}_isDefault">{{ "isDefault" | tr }}</label>
+    <label for="{{ className }}_isComplete">{{ "isComplete" | tr }}</label>
 
     <div class="switch-sm">
-        <input type="checkbox" name="{{ className }}[isDefault]"
-               class="switch-sm-checkbox" id="{{ className }}_isDefault"
-               checked="{% if item.isDefault =="true" %}checked{% endif %}">
-        <label class="switch-sm-label" for="{{ className }}_isDefault">
+        <input type="checkbox" name="{{ className }}[isComplete]"
+               class="switch-sm-checkbox" id="{{ className }}_isComplete"
+               checked="{% if item.isComplete =="true" %}checked{% endif %}">
+        <label class="switch-sm-label" for="{{ className }}_isComplete">
             <div class="switch-sm-inner"></div>
             <div class="switch-sm-switch"></div>
         </label>
     </div>
-</div>
-<div class="form-group">
-    <label for="{{ className }}_logo">{{ "logo" | tr }}</label>
-    <input class="form-control" type="text" name="{{ className }}[logo]"
-           id="{{ className }}_logo" value="{{ item.logo }}"/>
-</div>
-<div class="form-group">
-    <label for="{{ className }}_address">{{ "address" | tr }}</label>
-    <textarea name="{{ className }}[address]" id="{{ className }}_address"
-              class="form-control">{{ item.address }}</textarea>
-</div>
-<div class="form-group">
-    <label for="{{ className }}_contact">{{ "contact" | tr }}</label>
-    <textarea name="{{ className }}[contact]" id="{{ className }}_contact"
-              class="form-control">{{ item.contact }}</textarea>
-</div>
-<div class="form-group">
-    <label for="{{ className }}_boilerplate">{{ "boilerplate" | tr }}</label>
-    <textarea name="{{ className }}[boilerplate]"
-              id="{{ className }}_boilerplate"
-              class="form-control">{{ item.boilerplate }}</textarea>
 </div>
 <div class="form-group">
     <label for="{{ className }}_notes">{{ "notes" | tr }}</label>

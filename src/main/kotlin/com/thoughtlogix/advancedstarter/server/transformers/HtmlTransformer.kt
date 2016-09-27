@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,7 @@
 
 package com.thoughtlogix.advancedstarter.server.transformers
 
-import com.thoughtlogix.advancedstarter.controllers.AbstractController
 import com.thoughtlogix.advancedstarter.server.TemplateEngine
-import com.thoughtlogix.advancedstarter.server.transformers.Transformer
 import org.apache.commons.beanutils.BeanUtils
 import org.slf4j.LoggerFactory
 import spark.Request

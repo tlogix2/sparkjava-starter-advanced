@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,11 @@
 
 package com.thoughtlogix.advancedstarter.server.extensions
 
-import com.thoughtlogix.advancedstarter.Lang
-import com.thoughtlogix.advancedstarter.models.core.Model
 import com.mitchellbosecke.pebble.extension.AbstractExtension
 import com.mitchellbosecke.pebble.extension.Filter
 import com.mitchellbosecke.pebble.extension.Function
+import com.thoughtlogix.advancedstarter.Lang
+import com.thoughtlogix.advancedstarter.models.core.Model
 import com.thoughtlogix.advancedstarter.models.core.Starred
 import java.util.*
 

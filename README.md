@@ -9,11 +9,11 @@ The sparkjava advanced starter provides a seed / boilerplate / example project u
 
 All the features of the [SparkJava Simple Starter](https://github.com/thoughtlogix/sparkjava-starter-simple) project and...
 
-* Hibernate for JPA persistence
-* Jackson and content negotiation for marshaling data through routes
-* Simple authentication example.  Need to switch to (Spark-pac4j)[https://github.com/pac4j/spark-pac4j]
-* Simple todo list example
-* Reads settings from json file.
+* Hibernate & Envers for JPA persistence
+* Jackson and content negotiation for marshaling data through common routes
+* Simple authentication example.  Need to switch to [Spark-pac4j](https://github.com/pac4j/spark-pac4j)
+* Example Crud - Currently just Todo.
+* Basic Internationalization
 
 ## Installation
 
@@ -39,7 +39,7 @@ From the project dir, run:
 * Basic authentication.
 * Contact form
 * SMTP mail integration
-* Internationalization
+* Reads settings from json file.
 
 ##Faq
 

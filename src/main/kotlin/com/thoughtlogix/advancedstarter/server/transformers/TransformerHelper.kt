@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ fun out(model: ContextModel, format: String?, template: String?): String {
         val transformer = TransformerFactory.create(format)
         return transformer!!.render(model.getModel(), template)
     } catch (e: JsonProcessingException) {
-//        Logger.error(e)
+        //        Logger.error(e)
         return ""
     }
 
@@ -61,7 +61,7 @@ fun htmlOut(model: ContextModel, template: String?): String {
         val hmtlTransformer = TransformerFactory.create("html")
         return hmtlTransformer!!.render(model.getModel(), template)
     } catch (e: JsonProcessingException) {
-//        Logger.error(e)
+        //        Logger.error(e)
         return ""
     }
 
@@ -79,7 +79,7 @@ fun serializedOut(model: Any?, format: String?): String {
         val transformer = TransformerFactory.create(format)
         return transformer!!.render(model, "")
     } catch (e: JsonProcessingException) {
-//        Logger.error(e)
+        //        Logger.error(e)
         return ""
     }
 
@@ -93,7 +93,7 @@ fun <T : Any> parseInput(data: Request, className: Class<T>, format: String): T?
         val transformer = TransformerFactory.create(format)
         return transformer!!.read(data, className)
     } catch (e: IOException) {
-//        Logger.error(e)
+        //        Logger.error(e)
         return null
     }
 

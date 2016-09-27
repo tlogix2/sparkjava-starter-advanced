@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.models.tools
+package com.thoughtlogix.advancedstarter.models.examples
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.thoughtlogix.advancedstarter.db.JPA

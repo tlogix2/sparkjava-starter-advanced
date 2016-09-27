@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,6 @@ import com.thoughtlogix.advancedstarter.services.db.ProfileDbService
 import com.thoughtlogix.advancedstarter.services.db.UserDbService
 import com.thoughtlogix.advancedstarter.utils.NumberUtils
 import eu.bitwalker.useragentutils.UserAgent
-import org.apache.tools.ant.taskdefs.email.Mailer
-import org.w3c.tidy.Report
 import spark.Spark.*
 import java.util.*
 
@@ -152,11 +150,11 @@ class AuthController(jpa: JPA) : AbstractController(jpa) {
             user!!.password = password
             service.save(user)
 
-//            val report = Report()
-//            report.template = "email/txt/user-resetpassword"
-//            report.data.put("password", password)
-//            val mailer = Mailer()
-//            mailer.send(Lang.tr("resetPasswordRequest"), report.compile())
+            //            val report = Report()
+            //            report.template = "email/txt/user-resetpassword"
+            //            report.data.put("password", password)
+            //            val mailer = Mailer()
+            //            mailer.send(Lang.tr("resetPasswordRequest"), report.compile())
 
             flash.addInfo(model.get("sessionid") as String, Lang.tr("msg.user.resetpassword"))
 
@@ -194,11 +192,11 @@ class AuthController(jpa: JPA) : AbstractController(jpa) {
             user.isActive = true;
             userService.save(user)
 
-//            val report = Report()
-//            report.template = "email/txt/user-welcome"
-//            report.data.put("user", user)
-//            val mailer = Mailer()
-//            mailer.send(Lang.tr("welcomeTo") + product!!.name, report.compile())
+            //            val report = Report()
+            //            report.template = "email/txt/user-welcome"
+            //            report.data.put("user", user)
+            //            val mailer = Mailer()
+            //            mailer.send(Lang.tr("welcomeTo") + product!!.name, report.compile())
 
             flash.addError(model.get("sessionid") as String, Lang.tr("msg.user.register"))
 

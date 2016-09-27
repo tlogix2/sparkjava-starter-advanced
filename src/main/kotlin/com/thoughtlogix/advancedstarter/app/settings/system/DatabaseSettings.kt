@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,9 @@
 
 package com.thoughtlogix.advancedstarter.app.settings.system
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.thoughtlogix.advancedstarter.db.engines.DatabaseEngineFactory
 import com.thoughtlogix.advancedstarter.db.engines.DatabaseEngineId
-import com.fasterxml.jackson.annotation.JsonIgnore
 
 class DatabaseSettings {
 

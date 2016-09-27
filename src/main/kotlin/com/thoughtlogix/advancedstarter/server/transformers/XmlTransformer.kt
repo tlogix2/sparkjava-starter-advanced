@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,9 +30,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.thoughtlogix.advancedstarter.server.transformers.Transformer
 import spark.Request
-
 import java.io.IOException
 
 class XmlTransformer : Transformer {

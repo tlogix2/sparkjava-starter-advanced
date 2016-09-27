@@ -22,18 +22,41 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.db.envers
+package com.infoquant.gf.common
 
-import org.hibernate.envers.boot.internal.EnversService
-import org.hibernate.envers.event.spi.EnversPostDeleteEventListenerImpl
-import org.hibernate.event.spi.PostDeleteEvent
+import com.thoughtlogix.advancedstarter.Lang
+import org.testng.Assert
+import org.testng.annotations.Test
 
+class LangTest {
 
-class CustomEnversPostDeleteEventListenerImpl(enversConfiguration: EnversService) : EnversPostDeleteEventListenerImpl(enversConfiguration) {
+    @Test
+    @Throws(Exception::class)
+    fun testTr() {
+        Assert.assertEquals(Lang.tr("todo"), "Todo")
+    }
 
-    override fun onPostDelete(event: PostDeleteEvent) {
-        if (true) {
-            super.onPostDelete(event)
-        }
+    @Test
+    @Throws(Exception::class)
+    fun testTrAlt() {
+        Assert.assertEquals(Lang.tr("validate.invalid-alt", "dog"), "The dog is invalid")
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testTrAlt2() {
+        Assert.assertEquals(Lang.tr("validate.invalid", "dog"), "The field is invalid")
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testTrAll() {
+        Assert.assertEquals(Lang.trAll("username", "email", "apple"), arrayOf("Username", "Email", "apple"))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testTrAll2() {
+        Assert.assertEquals(Lang.tr("validate.invalid-complex", "username", "perfect"), "The Username is perfect")
     }
 }

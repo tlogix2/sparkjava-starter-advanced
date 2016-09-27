@@ -6,7 +6,7 @@
 {% include "templates/common/partials/navbar.peb" %}
 {% endblock %}
 
-<header class="default-layout" >
+<header class="default-layout">
     <div class="container">
         <div class="row">
             {% block "title" %}{% endblock %}

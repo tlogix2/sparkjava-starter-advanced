@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -184,7 +184,7 @@ class JPA(databaseSettings: DatabaseSettings) {
         /**
          * Envers auditing module props
          */
-        properties.put("hibernate.integration.envers.enabled", "false")
+        properties.put("hibernate.integration.envers.enabled", "true")
         properties.put("hibernate.envers.autoRegisterListeners", "false")
         properties.put("org.hibernate.envers.revision_type_field_name", "revtype")
         properties.put("org.hibernate.envers.audit_table_suffix", "_audit")

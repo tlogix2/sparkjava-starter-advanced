@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 package com.thoughtlogix.advancedstarter.db
 
-import com.thoughtlogix.advancedstarter.models.tools.Todo
+import com.thoughtlogix.advancedstarter.models.examples.Todo
 import com.thoughtlogix.advancedstarter.models.users.Role
 import com.thoughtlogix.advancedstarter.models.users.Team
 import com.thoughtlogix.advancedstarter.models.users.User
@@ -135,23 +135,23 @@ class SeedData(val jpa: JPA) {
         logger.info("Importing Fake Data: ")
 
         genericService = GenericDbService(jpa, Todo::class.java)
-        val todo1  = Todo()
-        todo1.title  ="Walk the dogs"
+        val todo1 = Todo()
+        todo1.title = "Walk the dogs"
         todo1.isComplete = true
         genericService.save(todo1)
 
-        val todo2  = Todo()
-        todo2.title  ="Fix the code"
+        val todo2 = Todo()
+        todo2.title = "Fix the code"
         todo2.isComplete = false
         genericService.save(todo2)
 
-        val todo3  = Todo()
-        todo3.title  ="Exercise"
+        val todo3 = Todo()
+        todo3.title = "Exercise"
         todo3.isComplete = false
         genericService.save(todo3)
 
-        val todo4  = Todo()
-        todo4.title  ="Walk the dogs (again)"
+        val todo4 = Todo()
+        todo4.title = "Walk the dogs (again)"
         todo4.isComplete = false
         genericService.save(todo4)
 

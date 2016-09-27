@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -131,7 +131,7 @@ class Server : SparkApplication {
     }
 
     companion object {
-        var isDevMode = false;
         var options: CommandLineOptions = CommandLineOptions();
+        var isDevMode = options.dev;
     }
 }

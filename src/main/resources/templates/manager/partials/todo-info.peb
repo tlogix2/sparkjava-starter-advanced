@@ -6,12 +6,12 @@
             <div class="panel-heading">{{ 'summary' | tr }}</div>
             <div class="panel-body auto-height">
                 <div class="row">
-                    <div class="col-xs-4">{{ 'name' | tr }}</div>
+                    <div class="col-xs-4">{{ 'title' | tr }}</div>
                     <div class="col-xs-8">{{ item.title }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-4">{{ 'isDefault' | tr }}</div>
-                    <div class="col-xs-8">{{ item.isCompleted }}</div>
+                    <div class="col-xs-4">{{ 'isComplete' | tr }}</div>
+                    <div class="col-xs-8">{{ item.isComplete }}</div>
                 </div>
                 <div class="row">
                     <div class="col-xs-4">{{ 'notes' | tr }}</div>

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Todoix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ package com.thoughtlogix.advancedstarter.services.db
 import com.thoughtlogix.advancedstarter.db.JPA
 import com.thoughtlogix.advancedstarter.db.PageParams
 import com.thoughtlogix.advancedstarter.db.PagedData
-import com.thoughtlogix.advancedstarter.models.tools.Todo
+import com.thoughtlogix.advancedstarter.models.examples.Todo
 import com.thoughtlogix.advancedstarter.services.Service
 import org.apache.commons.lang3.StringUtils
 import java.util.*

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) $date.year Thought Logix
+ * Copyright (c) 2016 Thought Logix
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +26,9 @@ package com.thoughtlogix.advancedstarter.models.core
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import org.hibernate.annotations.*
 import org.hibernate.envers.Audited
 import java.util.*
 import javax.persistence.*
-import javax.persistence.CascadeType
-import javax.persistence.Entity
-import javax.persistence.Index
-import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.xml.bind.annotation.*
 
