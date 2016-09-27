@@ -131,7 +131,7 @@ class Server : SparkApplication {
     }
 
     companion object {
-        var isDevMode = true;
+        var isDevMode = false;
         var options: CommandLineOptions = CommandLineOptions();
     }
 }

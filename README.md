@@ -11,6 +11,8 @@ All the features of the [SparkJava Simple Starter](https://github.com/thoughtlog
 
 * Hibernate for JPA persistence
 * Jackson and content negotiation for marshaling data through routes
+* Simple authentication example.  Need to switch to (Spark-pac4j)[https://github.com/pac4j/spark-pac4j]
+* Simple todo list example
 * Reads settings from json file.
 
 ## Installation
@@ -26,6 +28,7 @@ From the project dir, run:
 * If you don't have Gradle installed, run `./gradlew` for nix or `gradlew` for win
 * run `gradle runServer`
 * open `http://localhost:7011`
+* use `ctr + c` to stop the server
 
 ## See also
 
