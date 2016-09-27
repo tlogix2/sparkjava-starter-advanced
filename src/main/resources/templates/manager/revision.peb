@@ -1,0 +1,9 @@
+{% import "templates/common/macros/common.peb" %}
+{% extends "templates/layouts/default.peb" %}
+
+{% block "title" %}
+<h1>{{ "revision" | tr }}</h1>
+{% endblock %}
+
+{% block "content" %}
+{% endblock %}

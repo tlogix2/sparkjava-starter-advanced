@@ -1,0 +1,17 @@
+{% import "templates/common/macros/common.peb" %}
+{% extends "templates/layouts/default.peb" %}
+
+{% block "local-toolbar" %}
+    {{ localtoolbar("edit", basePath, item.id) }}
+{% endblock %}
+
+{% block "title" %}
+<form action="{% if item.id is not empty %}{{ basePath }}/{{ item.id }}{% else %}{{ basePath }}{% endif %}"
+      role="form" name="{{ singularName }}Form" method="post">
+    {{ header(singularName, "edit", basePath, item.id) }}
+    {% endblock %}
+
+    {% block "content" %}
+    {% include "templates/manager/partials/" + objName + "-form.peb" %}
+</form>
+{% endblock %}

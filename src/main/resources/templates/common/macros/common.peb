@@ -1,0 +1,135 @@
+{% macro header(title, format, url, id) %}
+    <h1>{{ title | tr }}</h1>
+{% endmacro %}
+
+{% macro localtoolbar(format, url, id, internal) %}
+    <div class="local-toolbar-wrap">
+        <div class="row local-toolbar">
+            {% if format == "edit" %}
+                <div class="col-sm-6 text-left">
+                    {% if id is not empty %}
+                        <a href="{{ url }}/{{ id }}/delete"
+                           class="btn btn-warning gf-confirm"><i class="fa fa-trash"></i> {{ 'delete' | tr }}
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    <a href="#"
+                       class="btn btn-default" onclick="window.history.back();"><i
+                                class="fa fa-close"></i> {{ 'cancel' | tr }}</a>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> {{ 'save' | tr }}
+                    </button>
+                </div>
+            {% elseif format == "list" %}
+                <div class="col-sm-12">
+                    <a href="{{ url }}/create"
+                       class="btn btn-default"><i class="fa fa-plus"></i> {{ 'add' | tr }}</a>
+                </div>
+            {% elseif format == "show" %}
+                <div class="col-sm-12">
+                    <a href="{{ url }}"
+                       class="btn btn-default"><i class="fa fa-list"></i> {{ 'list' | tr }}</a>
+                    <a href="{{ url }}/{{ id }}/edit"
+                       class="btn btn-default"><i class="fa fa-edit"></i> {{ 'edit' | tr }}</a>
+                    {% if url contains "tracks" %}
+                        <a href="{{ url }}/{{ id }}/build"
+                           class="btn btn-default"><i class="fa fa-play"></i> {{ 'build' | tr }}</a>
+                    {% endif %}
+                </div>
+            {% elseif format == "simple" %}
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> {{ 'save' | tr }}
+                    </button>
+                </div>
+            {% elseif format == "download" %}
+                <div class="col-sm-12">
+                    <a href="{{ url }}/{{ id }}/download"
+                       class="btn btn-default"><i class="fa fa-cloud-download"></i> {{ 'download' | tr }}</a>
+                </div>
+            {% elseif format == "dashboard" %}
+                <div class="col-sm-6 text-left">
+                    {% if internal == "true" %}
+                        <a class="btn  "
+                           href="/analytics/default/app?action=run&command=com.infoquant.cgh.actions.AddBatchListAction">{{ "loadBatch" | tr }}</a>
+                        <a class="btn  "
+                           href="/analytics/default/app?action=addSample">{{ "addSample" | tr }}</a>
+                        <a class="btn  "
+                           href="/analytics/default/app?action=run&command=com.infoquant.cgh.actions.LoadResultsAction">{{ "loadResults" | tr }}</a>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {#<a href="{{ module }}" class="btn btn-default"><i class="fa fa-refresh"></i> {{ 'refresh' | tr }}</a>#}
+                </div>
+            {% else %}
+                <div class="col-sm-12"></div>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro paginate(p, count, url, pageParams) %}
+    {% if count > 1 %}
+        {% set sortParams = "&order=" + pageParams.order + "&size=" + pageParams.size + "&expression=" + pageParams.sort + "&expression=" + pageParams.expression + "&filter=" + pageParams.filter %}
+        <nav>
+            <ul class="pagination pagination-sm">
+                {% if p > 1 %}
+                    <li><a href="{{ url }}?page={{ p-1 }}{{ sortParams }}"
+                           rel="prev">◀</a></li>
+                {% else %}
+                    <li class="disabled"><span>◀</span></li>
+                {% endif %}
+
+                <li class="active"><span>{{ p }}</span></li>
+
+                {% if p < count %}
+                    <li><a href="{{ url }}?page={{ p+1 }}{{ sortParams }}"
+                           rel="next">▶</a></li>
+                {% else %}
+                    <li class="disabled"><span>▶</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endmacro %}
+
+{% macro sortable(label, orderBy, basePath, pageParams) %}
+    {% if pageParams.order == orderBy %}
+        {% if pageParams.sort == "asc" %}
+            {% set newSort = "desc" %}
+        {% else %}
+            {% set newSort = "asc" %}
+        {% endif %}
+    {% else %}
+        {% set newSort = "desc" %}
+    {% endif %}
+
+    <a href="{{ basePath }}?order={{ orderBy }}&sort={{ newSort }}"
+       title="{{ "sort" | tr }} {{ label | tr }}">{{ label | tr }}</a>
+{% endmacro %}
+
+{% macro widget(title, content, url) %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{ title | tr }}</div>
+        <div class="panel-body">
+            {{ content | raw }}
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+{% endmacro %}
+
+{% macro _commonContextMenu(id, url) %}
+    <li><a href="{{ url }}/{{ id }}">{{ "view" | tr }}</a></li>
+    <li><a href="{{ url }}/{{ id }}/delete" class="gf-confirm">{{ "delete" | tr }}</a></li>
+{% endmacro %}
+
+{% macro defaultContextMenu(id, url) %}
+    <div class="dropdown">
+        <a class="dropdown-toggle" id="gf-contextmenu-{{ id }}"
+           data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="true"><i class="fa fa-bars"></i></a>
+        <ul class="dropdown-menu dropdown-menu-right pull-right"
+            aria-labelledby="gf-contextmenu-{{ id }}">
+            {{ _commonContextMenu(id, url) }}
+        </ul>
+    </div>
+{% endmacro %}

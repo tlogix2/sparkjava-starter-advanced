@@ -1,0 +1,12 @@
+{% import "templates/common/macros/common.peb" %}
+<div class="row">
+    <div class="col-sm-6"> {{ pagedData.count }}
+        {% if pluralName != null %}
+            {{ pluralName | tr }}
+        {% else %}
+            {{ "items" | tr }}
+        {% endif %}
+    </div>
+    <div
+            class="col-sm-6 text-right"> {{ paginate(pageParams.page+1, pagedData.count, basePath, pageParams) }}</div>
+</div>

@@ -17,4 +17,5 @@ gradle-app.setting
 dist/
 .idea/
 out/
-resources/
+resources/db/sas.mv.db
+resources/db/sas.trace.db

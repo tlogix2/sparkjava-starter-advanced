@@ -1,0 +1,13 @@
+{% block "header" %}
+{% include "templates/common/partials/header.peb" %}
+{% endblock %}
+
+{% block "navbar" %}
+{% include "templates/common/partials/navbar.peb" %}
+{% endblock %}
+
+{% block "content" %}{% endblock %}
+
+{% block "footer" %}
+{% include "templates/common/partials/footer.peb" %}
+{% endblock %}

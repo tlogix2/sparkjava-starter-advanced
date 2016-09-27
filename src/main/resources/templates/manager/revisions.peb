@@ -1,0 +1,9 @@
+{% extends "templates/layouts/default.peb" %}
+
+{% block "title" %}
+<h1>{{ "revisions" | tr }}</h1>
+{% endblock %}
+
+{% block "content" %}
+
+{% endblock %}

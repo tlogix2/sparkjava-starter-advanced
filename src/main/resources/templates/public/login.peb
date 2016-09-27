@@ -1,0 +1,39 @@
+{% extends "templates/layouts/default.peb" %}
+
+{% block "content" %}
+<h3>{{ 'login' | tr }}</h3>
+<form id="loginForm" method="POST" action="/login">
+    <div class="form-group">
+        <label for="username"
+               class="control-label">{{ "username" | tr }}</label>
+        <input type="text" class="form-control"
+               id="username" name="username" value=""
+               required=""
+               title="Please enter you username">
+    </div>
+    <div class="form-group">
+        <label for="password"
+               class="control-label">{{ "password" | tr }}</label>
+        <input type="password" class="form-control"
+               id="password" name="password" value=""
+               required=""
+               title="Please enter your password">
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <p>
+                <button type="submit" id="submit" class="btn ">{{ "submit" | tr }}</button>
+            </p>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #efefef;">
+        <div class="col-sm-6 text-center">
+                <a href="/resetpassword" class="btn ">{{ "resetPassword" | tr }}</a>
+        </div>
+        <div class="col-sm-6 text-center">
+                <a href="/register" class="btn ">{{ "requestAccess" | tr }}</a>
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock %}

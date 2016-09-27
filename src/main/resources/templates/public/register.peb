@@ -1,0 +1,229 @@
+{% extends "templates/layouts/default.peb" %}
+
+{% block "title" %}
+<h1>{{ "register" | tr }}</h1>
+{% endblock %}
+
+{% block "content" %}
+<form method="POST" action="/register">
+
+    <h3 style="margin-top: 50px;">{{ "account" | tr }}</h3>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input type="text" class="form-control "
+                       name="User[username]"
+                       id="User_username"
+                       maxlength="50"
+                       placeholder="{{ 'username' | tr }}"
+                       required/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input type="password" class="form-control "
+                       name="User[password]"
+                       id="User_password"
+                       maxlength="50"
+                       placeholder="{{ 'password' | tr }}"
+                       required="required"/>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input type="password" class="form-control "
+                       name="User[repeatPassword]"
+                       id="User_repeatPassword"
+                       maxlength="50"
+                       placeholder="{{ 'repeatPassword' | tr }}"
+                       required="required"/>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 50px;">{{ "profile" | tr }}</h3>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input type="text" class="form-control "
+                       name="Profile[firstName]"
+                       id="Profile_firstName"
+                       maxlength="50"
+                       placeholder="{{ 'firstName' | tr }}"
+                       required="required"/>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input type="text" class="form-control "
+                       name="Profile[lastName]"
+                       id="Profile_lastName"
+                       maxlength="50"
+                       placeholder="{{ 'lastName' | tr }}"
+                       required="required"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input type="email" class="form-control "
+                       name="Profile[email]"
+                       id="Profile_email"
+                       placeholder="{{ 'email' | tr }}"
+                       required="required"/>
+            </div>
+        </div>
+    </div>
+    <div ng-if="formStyle == 'full'"
+         class="with-padding-top">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[company]"
+                           id="Profile_company"
+                           maxlength="50"
+                           placeholder="{{ 'company' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[department]"
+                           id="Profile_department"
+                           maxlength="50"
+                           placeholder="{{ 'department' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[title]"
+                           id="Profile_title"
+                           maxlength="50"
+                           placeholder="{{ 'title' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[phone]"
+                           id="Profile_phone"
+                           maxlength="50"
+                           placeholder="{{ 'phone' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[address1]"
+                           id="Profile_address1"
+                           maxlength="100"
+                           placeholder="{{ 'address1' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[address2]"
+                           id="Profile_address2"
+                           maxlength="10"
+                           placeholder="{{ 'address2' | tr }}"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[city]"
+                           id="Profile_city"
+                           maxlength="50"
+                           placeholder="{{ 'city' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[state]"
+                           id="Profile_state"
+                           maxlength="50"
+                           placeholder="{{ 'state' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[zip]"
+                           id="Profile_zip"
+                           maxlength="20"
+                           placeholder="{{ 'zip' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input type="text" class="form-control "
+                           name="Profile[country]"
+                           id="Profile_country"
+                           maxlength="50"
+                           placeholder="{{ 'country' | tr }}"
+                           required="required"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input type="text" class="form-control "
+                       name="Profile[captcha]" id="captcha"
+                       placeholder="Please ADD 2 and 4 "
+                       required="required"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                    <textarea name="notes" id="notes" class="form-control"
+                              placeholder="Comments"></textarea>
+            </div>
+        </div>
+    </div>
+    {% if product.ref == "gn" %}
+        <div class="checkbox" class="text-center">
+            <label>
+                <input type="checkbox" required="required">
+                I
+                agree to the
+                <strong><a href="/content/tos">Terms of
+                        Service</a>
+                </strong>
+            </label>
+        </div>
+    {% endif %}
+    <div class="text-right">
+        <button type="submit" class="btn ">{{ "submit" | tr }}</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% import "templates/common/macros/common.peb" %}
+
+{% include "templates/common/partials/list-controls-top.peb" %}
+<table class="table table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>{{ sortable('title', 'title', basePath, pageParams) | raw }}</th>
+        <th>{{ sortable('isCompleted', 'isCompleted', basePath, pageParams) | raw }}</th>
+        <th>{{ sortable('notes', 'notes', basePath, pageParams) | raw }}</th>
+        <th>{{ sortable('updatedAt', 'updatedAt', basePath, pageParams) | raw }}</th>
+        <th>{{ sortable('updatedBy', 'updatedBy', basePath, pageParams) | raw }}</th>
+        <th class="gf-actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in pagedData.items %}
+        <tr>
+            <td><a href="{{ basePath }}/{{ item.id }}"
+                   title="{{ item.title }}">{{ item.title }}</a></td>
+            <td>{{ item.isCompleted }}</td>
+            <td>{{ item.notes }}</td>
+            <td>{{ item.updatedAt | date("d MMM yyyy HH:mm:ss") }}</td>
+            <td>{{ item.updatedBy }}</td>
+            <td class="gf-actions">{{ defaultContextMenu(item.id, basePath) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% include "templates/common/partials/list-controls-bottom.peb" %}

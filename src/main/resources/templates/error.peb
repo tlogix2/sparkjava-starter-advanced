@@ -1,0 +1,27 @@
+<style>
+    body {
+        background: #f7f7f7;
+        text-align: center;
+        margin: 100px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 36px;
+        padding-bottom: 10px;
+        margin-bottom: 0;
+        color: #999;
+    }
+
+    div.message {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 30px;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+</style>
+<h1>{{ title }}</h1>
+<div class="message">
+    <p>{{ msg }}</p>
+</div>

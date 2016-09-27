@@ -1,0 +1,28 @@
+{% block "header" %}
+{% include "templates/common/partials/header.peb" %}
+{% endblock %}
+
+{% block "navbar" %}
+{% include "templates/common/partials/navbar.peb" %}
+{% endblock %}
+
+<header class="default-layout" >
+    <div class="container">
+        <div class="row">
+            {% block "title" %}{% endblock %}
+        </div>
+    </div>
+</header>
+
+<div class="container content ">
+    <div class="row">
+        <div class="col-lg-12">
+            {% block "local-toolbar" %}{% endblock %}
+            {% block "content" %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block "footer" %}
+{% include "templates/common/partials/footer.peb" %}
+{% endblock %}

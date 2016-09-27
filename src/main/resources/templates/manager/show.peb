@@ -1,0 +1,14 @@
+{% import "templates/common/macros/common.peb" %}
+{% extends "templates/layouts/default.peb" %}
+
+{% block "title" %}
+    {{ header(singularName, "show", basePath, item.id) }}
+{% endblock %}
+
+{% block "local-toolbar" %}
+    {{ localtoolbar("show", basePath, item.id) }}
+{% endblock %}
+
+{% block "content" %}
+    {% include "templates/manager/partials/" + objName + "-info.peb" %}
+{% endblock %}
