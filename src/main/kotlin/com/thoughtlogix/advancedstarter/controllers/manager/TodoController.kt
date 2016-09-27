@@ -22,35 +22,31 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.server
+package com.thoughtlogix.advancedstarter.controllers
 
+import com.infoquant.gf.server.controllers.manager.ManagerController
+import com.thoughtlogix.advancedstarter.Lang
+import com.thoughtlogix.advancedstarter.db.JPA
+import com.thoughtlogix.advancedstarter.db.PageParams
+import com.thoughtlogix.advancedstarter.db.PagedData
+import com.thoughtlogix.advancedstarter.models.tools.Todo
+import com.thoughtlogix.advancedstarter.models.users.User
+import com.thoughtlogix.advancedstarter.services.db.TodoDbService
+import com.thoughtlogix.advancedstarter.services.db.UserDbService
+import org.slf4j.LoggerFactory
+import spark.Spark.get
 
-import com.mitchellbosecke.pebble.PebbleEngine
-import com.mitchellbosecke.pebble.error.PebbleException
-import com.thoughtlogix.advancedstarter.server.extensions.CoreExtension
-import java.io.IOException
-import java.io.StringWriter
-
-class DefaultTemplateEngine {
-
-    private val engine: PebbleEngine
-    private val basepath: String = "templates"
+class TodoController(jpa: JPA) : ManagerController<Todo>(Todo::class.java, jpa) {
 
     init {
-        this.engine = PebbleEngine.Builder().extension(CoreExtension()).build();
-    }
+        service = TodoDbService(jpa)
+        basePath = "/todo"
+        objName = "todo"
+        className = "Todo"
+        singularName = Lang.tr("todo")
+        pluralName = Lang.tr("todo")
 
-    @SuppressWarnings("unchecked")
-    fun render(model: Map<String, Any>, template: String): String {
-        try {
-            val writer: StringWriter = StringWriter()
-            val template = engine.getTemplate(basepath + template)
-            template.evaluate(writer, model as Map<String, Any>)
-            return writer.toString()
-        } catch (e: PebbleException) {
-            throw IllegalArgumentException(e)
-        } catch (e: IOException) {
-            throw IllegalArgumentException(e)
-        }
+        initCommonFilters(basePath, "user")
+        initCommonRoutes()
     }
 }

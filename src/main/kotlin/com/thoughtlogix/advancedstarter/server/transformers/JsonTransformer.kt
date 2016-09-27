@@ -30,18 +30,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.thoughtlogix.advancedstarter.Server
-import com.thoughtlogix.advancedstarter.server.ContextModel
 import com.thoughtlogix.advancedstarter.server.transformers.Transformer
-import org.slf4j.LoggerFactory
 import spark.Request
 
 import java.io.IOException
 
 
 class JsonTransformer : Transformer {
-
-    val logger = LoggerFactory.getLogger(JsonTransformer::class.java)
 
     init {
         mapper.registerModule(Hibernate5Module())
@@ -51,8 +46,8 @@ class JsonTransformer : Transformer {
     }
 
     @Throws(JsonProcessingException::class)
-    override fun render(model: ContextModel, template: String): String {
-        return mapper.writeValueAsString(model.getModel())
+    override fun render(model: Any, template: String): String {
+        return mapper.writeValueAsString(model)
     }
 
     @Throws(IOException::class)

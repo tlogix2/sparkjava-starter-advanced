@@ -24,7 +24,7 @@
 
 package com.thoughtlogix.advancedstarter.utils
 
-import com.thoughtlogix.advancedstarter.server.DefaultTemplateEngine
+import com.thoughtlogix.advancedstarter.server.TemplateEngine
 import org.testng.Assert
 import org.testng.annotations.Test
 import java.util.*
@@ -32,7 +32,7 @@ import java.util.*
 class DefaultTemplateEngineTest {
     @Test(expectedExceptions = arrayOf(IllegalArgumentException::class))
     fun testRenderWithMissingTemplate() {
-        val renderer = DefaultTemplateEngine()
+        val renderer = TemplateEngine()
         val model = HashMap<String, String>()
         model.put("foo", "bar")
         renderer.render(model, "fake.peb")
@@ -40,7 +40,7 @@ class DefaultTemplateEngineTest {
 
     @Test
     fun testRenderWithValidTemplate() {
-        val renderer = DefaultTemplateEngine()
+        val renderer = TemplateEngine()
         val model = HashMap<String, String>()
         model.put("foo", "bar")
         val result = renderer.render(model, "/simple.peb")

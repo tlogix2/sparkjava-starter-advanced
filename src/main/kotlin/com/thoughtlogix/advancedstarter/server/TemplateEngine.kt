@@ -22,31 +22,39 @@
  * SOFTWARE.
  */
 
-package com.thoughtlogix.advancedstarter.server.transformers
+package com.thoughtlogix.advancedstarter.server
 
-import com.thoughtlogix.advancedstarter.server.transformers.HtmlTransformer
-import com.thoughtlogix.advancedstarter.server.transformers.JsonTransformer
-import com.thoughtlogix.advancedstarter.server.transformers.Transformer
-import com.thoughtlogix.advancedstarter.server.transformers.XmlTransformer
 
-object TransformerFactory {
+import com.mitchellbosecke.pebble.PebbleEngine
+import com.mitchellbosecke.pebble.error.PebbleException
+import com.thoughtlogix.advancedstarter.server.extensions.CoreExtension
+import java.io.IOException
+import java.io.StringWriter
 
-    val jsonTransformer = JsonTransformer()
-    val htmlTransformer = HtmlTransformer()
-    val xmlTransformer = XmlTransformer()
+class TemplateEngine {
 
-    fun create(format: String?): Transformer? {
+    private val engine: PebbleEngine
+    private val basepath: String = "templates"
 
-        if (format == null) return null
+    init {
+        this.engine = PebbleEngine.Builder().extension(CoreExtension()).build();
+    }
 
-        if (format.contains("json")) {
-            return jsonTransformer
-        } else if (format.contains("html")) {
-            return htmlTransformer
-        } else if (format.contains("xml")) {
-            return xmlTransformer
+    @SuppressWarnings("unchecked")
+    fun render(model: Any, template: String): String {
+        if (model is Map<*, *>) {
+            try {
+                val writer: StringWriter = StringWriter()
+                val template = engine.getTemplate(basepath + template)
+                template.evaluate(writer, model as Map<String, Any>)
+                return writer.toString()
+            } catch (e: PebbleException) {
+                throw IllegalArgumentException(e)
+            } catch (e: IOException) {
+                throw IllegalArgumentException(e)
+            }
         } else {
-            return null
+            throw IllegalArgumentException("Invalid model, model must be instance of Map.")
         }
     }
 }

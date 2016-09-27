@@ -24,9 +24,9 @@
 
 package com.thoughtlogix.advancedstarter.server.transformers
 
-import com.thoughtlogix.advancedstarter.Server
-import com.thoughtlogix.advancedstarter.server.ContextModel
-import com.thoughtlogix.advancedstarter.server.DefaultTemplateEngine
+import com.thoughtlogix.advancedstarter.controllers.AbstractController
+import com.thoughtlogix.advancedstarter.server.TemplateEngine
+import com.thoughtlogix.advancedstarter.server.transformers.Transformer
 import org.apache.commons.beanutils.BeanUtils
 import org.slf4j.LoggerFactory
 import spark.Request
@@ -34,11 +34,11 @@ import java.io.IOException
 import java.lang.reflect.InvocationTargetException
 
 class HtmlTransformer : Transformer {
-    val logger = LoggerFactory.getLogger(HtmlTransformer::class.java)
-    private val templateEngine = DefaultTemplateEngine()
+    private val templateEngine = TemplateEngine()
+    open val logger = LoggerFactory.getLogger(HtmlTransformer::class.java)
 
-    override fun render(model: ContextModel, template: String): String {
-        return templateEngine.render(model.getModel(), template)
+    override fun render(model: Any, template: String): String {
+        return templateEngine.render(model, template)
     }
 
     @Throws(IOException::class)

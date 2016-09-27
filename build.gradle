@@ -69,7 +69,8 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.2'
     compile group: 'com.beust', name: 'jcommander', version: '1.48'
 
-    // Unique to Sparkjava advanced starter
+    // Unique to Sparkjava advanced starter\
+    compile 'eu.bitwalker:UserAgentUtils:1.20'
     compile 'commons-beanutils:commons-beanutils:1.9.2'
     compile 'org.apache.httpcomponents:httpclient:4.5'
     compile 'org.apache.httpcomponents:httpmime:4.5'

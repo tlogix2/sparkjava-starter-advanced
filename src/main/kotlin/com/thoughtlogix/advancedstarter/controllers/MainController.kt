@@ -24,39 +24,40 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
+import com.infoquant.gf.server.other.htmlOut
 import com.thoughtlogix.advancedstarter.db.JPA
 import org.slf4j.LoggerFactory
 import spark.Spark.get
 
-class MainController(jpa: JPA) : Controller(jpa) {
+class MainController(jpa: JPA) : AbstractController(jpa) {
     override val logger = LoggerFactory.getLogger(MainController::class.java)
 
     init {
-        templatePath = "/main"
+        basePath = "/"
 
         /**
          * Initialize spark before filters for all routes
          */
-        initFilters(arrayOf(baseRoutePath + "/*"))
+        initFilters(arrayOf(basePath, basePath + "*"))
 
-        get(baseRoutePath + "/") { rq, rs ->
+        get(basePath + "/") { rq, rs ->
             model.put("pageTitle", "Spark Advanced Starter")
-            htmlOut(model, templatePath + "/index.peb");
+            htmlOut(model, basePath + "public/index.peb");
         }
 
-        get(baseRoutePath + "/features") { rq, rs ->
+        get(basePath + "/features") { rq, rs ->
             model.put("pageTitle", "Features")
-            htmlOut(model, templatePath + "/features.peb");
+            htmlOut(model, basePath + "public/features.peb");
         }
 
-        get(baseRoutePath + "/about") { rq, rs ->
+        get(basePath + "/about") { rq, rs ->
             model.put("pageTitle", "About Us")
-            htmlOut(model, templatePath + "/about.peb");
+            htmlOut(model, basePath + "public/about.peb");
         }
 
-        get(baseRoutePath + "/contact") { rq, rs ->
+        get(basePath + "/contact") { rq, rs ->
             model.put("pageTitle", "Contact Us")
-            htmlOut(model, templatePath + "/contact.peb");
+            htmlOut(model, basePath + "public/contact.peb");
         }
     }
 }

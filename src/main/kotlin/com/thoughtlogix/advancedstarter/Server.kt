@@ -25,9 +25,11 @@
 package com.thoughtlogix.advancedstarter
 
 import com.beust.jcommander.JCommander
+import com.infoquant.gf.server.controllers.AuthController
 import com.thoughtlogix.advancedstarter.app.settings.Settings
 import com.thoughtlogix.advancedstarter.controllers.ErrorController
 import com.thoughtlogix.advancedstarter.controllers.MainController
+import com.thoughtlogix.advancedstarter.controllers.TodoController
 import com.thoughtlogix.advancedstarter.db.JPA
 import com.thoughtlogix.advancedstarter.db.SeedData
 import com.thoughtlogix.advancedstarter.server.CommandLineOptions
@@ -42,7 +44,6 @@ class Server : SparkApplication {
     val logger = LoggerFactory.getLogger(Server::class.java)
     private val settings: Settings = Settings();
     private var jpa: JPA? = null
-
 
     /**
      * Constructor to standalone deployment using embedded jetty web server.
@@ -118,7 +119,8 @@ class Server : SparkApplication {
 
     private fun initControllers() {
         MainController(jpa!!)
-//        UserController(jpa!!)
+        AuthController(jpa!!)
+        TodoController(jpa!!)
         ErrorController(jpa!!)
     }
 

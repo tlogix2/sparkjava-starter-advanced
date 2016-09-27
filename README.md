@@ -23,6 +23,7 @@ Make sure you have jdk 1.8+ installed.
 
 From the project dir, run:
 
+* If you don't have Gradle installed, run `./gradlew` for nix or `gradlew` for win
 * run `gradle runServer`
 * open `http://localhost:7011`
 

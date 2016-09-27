@@ -24,11 +24,12 @@
 
 package com.thoughtlogix.advancedstarter.controllers
 
+import com.infoquant.gf.server.other.htmlOut
 import com.thoughtlogix.advancedstarter.db.JPA
 import org.slf4j.LoggerFactory
 import spark.Spark.get
 
-class ErrorController(jpa:JPA) : Controller(jpa) {
+class ErrorController(jpa: JPA) : AbstractController(jpa) {
     override val logger = LoggerFactory.getLogger(ErrorController::class.java)
 
     init {

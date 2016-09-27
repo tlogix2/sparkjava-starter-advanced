@@ -25,7 +25,6 @@
 package com.thoughtlogix.advancedstarter.server.transformers
 
 import com.fasterxml.jackson.core.JsonProcessingException
-import com.thoughtlogix.advancedstarter.server.ContextModel
 import spark.Request
 
 import java.io.IOException
@@ -33,7 +32,7 @@ import java.io.IOException
 interface Transformer {
 
     @Throws(JsonProcessingException::class)
-    fun render(model: ContextModel, template: String): String
+    fun render(model: Any, template: String): String
 
     @Throws(IOException::class)
     fun <T : Any> read(data: Request, className: Class<T>): T?

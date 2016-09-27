@@ -37,15 +37,15 @@ class ContextModel {
     }
 
     fun put(key: String, value: Any) {
-        model.get().put(key, value);
+        model.get().put(key, value)
     }
 
     fun getModel(): Map<String, Any> {
-        return model.get();
+        return model.get()
     }
 
-    fun get(key: String): Any {
-        return model.get()[key]!!;
+    fun get(key: String): Any? {
+        return model.get()[key]
     }
 
     fun containsKey(key: String): Boolean {
