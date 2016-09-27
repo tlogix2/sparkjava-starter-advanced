@@ -1,6 +1,9 @@
 {% extends "templates/layouts/default.peb" %}
 
-{% block "content" %}
+{% block "title" %}
 <h1>{{ pageTitle }}</h1>
+{% endblock %}
+
+{% block "content" %}
 <p>You found the contact page.</p>
 {% endblock %}
