@@ -38,19 +38,29 @@ From the project dir, run:
 
 ## Todo
 
-* Basic authentication.
-* Contact form
+* Add more examples
+* Add Contact form
 * SMTP mail integration
-* Reads settings from json file.
+* Read settings from json file.
+* Hook up envers to GUI
+* Added a sample js client to demonstrate REST API.
 
 ##Faq
 
-* Why use hibernate instead of a lighter alternative (i.e. EBean or JOOQ)?
-We already use Hibernate (with Envers) for other projects so we just went with that.
+* How should I use this?
 
-* Why use 7010/7011 instead of default 4567 from SparK?
-For the same reason we dont use 3000, 4000, 8080, or 9000.  We may have other tools already running on those ports.
+At the moment, just use it for ideas.  Soon, you can hack it to fit your needs.  Eventually, simply extending
+a few classes and hook in your own functionality.
 
+* Why use Hibernate instead of a lighter alternative (i.e. Ebean or JOOQ)?
+
+We already use Hibernate (with Envers) for other projects so we just went with that. 
+A lighter database framework might be more inline with Spark.  
+
+* Why use ports 7010/7011 instead of default 4567 from SparK?
+
+For the same reason we dont use 3000, 8080, or 9000.  We may have other tools 
+already running on those ports so we rolled the dice and picked these.
 
 ## Notes
 
