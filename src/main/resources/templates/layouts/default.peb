@@ -6,19 +6,23 @@
 {% include "templates/common/partials/navbar.peb" %}
 {% endblock %}
 
-<header class="default-layout">
+<header>
     <div class="container">
         <div class="row">
-            {% block "title" %}{% endblock %}
+            <div class="col-lg-12">
+                {% block "title" %}{% endblock %}
+            </div>
         </div>
     </div>
 </header>
 
-<div class="container content ">
+<div class="container ">
     <div class="row">
         <div class="col-lg-12">
             {% block "local-toolbar" %}{% endblock %}
-            {% block "content" %}{% endblock %}
+            <div class="content">
+                {% block "content" %}{% endblock %}
+            </div>
         </div>
     </div>
 </div>

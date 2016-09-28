@@ -27,6 +27,7 @@ package com.thoughtlogix.advancedstarter
 import com.beust.jcommander.JCommander
 import com.infoquant.gf.server.controllers.AuthController
 import com.thoughtlogix.advancedstarter.app.settings.Settings
+import com.thoughtlogix.advancedstarter.controllers.AccountController
 import com.thoughtlogix.advancedstarter.controllers.ErrorController
 import com.thoughtlogix.advancedstarter.controllers.MainController
 import com.thoughtlogix.advancedstarter.controllers.TodoController
@@ -77,6 +78,7 @@ class Server : SparkApplication {
         }
 
         port(options.serverPort.toInt())
+        Server.isDevMode = options.dev;
         if (Server.isDevMode) {
             externalStaticFileLocation("src/main/resources/public/")
         } else {
@@ -121,6 +123,7 @@ class Server : SparkApplication {
         MainController(jpa!!)
         AuthController(jpa!!)
         TodoController(jpa!!)
+        AccountController(jpa!!)
         ErrorController(jpa!!)
     }
 
