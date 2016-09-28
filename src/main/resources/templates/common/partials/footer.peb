@@ -2,30 +2,23 @@
     <div class="footer-above">
         <div class="container">
             <div class="row">
-                <div class="footer-col col-md-4">
+                <div class="footer-col col-md-5">
                     <h3>About</h3>
-                    <p>An advanced boilerplate for Spark, Kotlin and friends.</p>
+                    <p>The sparkjava advanced starter provides a seed project using Spark, Kotlin, Gradle, Hibernate, Jackson and more.</p>
                 </div>
-                <div class="footer-col col-md-4">
-                    <h3>Social</h3>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-2x fa-fw fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-2x fa-fw fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-2x fa-fw fa-google-plus"></i></a>
-                        </li>
-                    </ul>
+                <div class="footer-col col-md-2">
                 </div>
-                <div class="footer-col col-md-4">
-                    <h3>Included Technology</h3>
+                <div class="footer-col col-md-5">
+                    <h3>Included Tools</h3>
                     <p>
-                        <a href="http://sparkjava.com/" target="_blank" alt="Spark">Spark</a> |
-                        <a href="https://kotlinlang.org/" target="_blank" alt="Kotlin">Kotlin</a> |
-                        <a href="http://www.mitchellbosecke.com/pebble/home" target="_blank" alt="Pebble">Pebble</a>
+                        <a class="label label-primary" href="http://sparkjava.com/" target="_blank" alt="Spark">Spark</a>
+                        <a class="label label-primary" href="https://commons.apache.org/" target="_blank" alt="Apache Commons">Apache Commons</a>
+                        <a class="label label-primary" href="http://www.mitchellbosecke.com/pebble/home" target="_blank" alt="Pebble">Pebble</a>
+                    </p>
+                    <p>
+                        <a class="label label-primary" href="http://hibernate.org/" target="_blank" alt="Hibernate ORM">Hibernate</a>
+                        <a class="label label-primary" href="https://kotlinlang.org/" target="_blank" alt="Kotlin">Kotlin</a>
+                        <a class="label label-primary" href="https://github.com/FasterXML/jackson" target="_blank" alt="FasterXML">FasterXML Jackson</a>
                     </p>
                 </div>
             </div>
@@ -35,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    Copyright &copy; Spark Advanced Starter 2016
+                    Copyright &copy; 2016 Spark Advanced Starter
                 </div>
             </div>
         </div>

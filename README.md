@@ -7,6 +7,8 @@ The sparkjava advanced starter provides a seed / boilerplate / example project u
 
 __Note: This project is a bit of a Frankenstein merged from a couple other projects.  Until the code is reviewed and more tests are written, use with caution.__
 
+![Screenshot](https://github.com/thoughtlogix/sparkjava-starter-advanced/blob/master/src/main/resources/public/assets/img/screenshot-advanced.png?raw=true "Screenshot")
+
 ## Features and Limitations
 
 All the features of the [SparkJava Simple Starter](https://github.com/thoughtlogix/sparkjava-starter-simple) project and...
