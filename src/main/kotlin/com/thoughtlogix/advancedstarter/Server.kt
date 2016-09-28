@@ -72,13 +72,14 @@ class Server : SparkApplication {
     private fun initServer(args: Array<String>) {
         settings.load()
         parseArgs(args);
+        Server.isDevMode = options.dev;
 
         if (Server.isDevMode) {
             enableDebugScreen();
         }
 
         port(options.serverPort.toInt())
-        Server.isDevMode = options.dev;
+
         if (Server.isDevMode) {
             externalStaticFileLocation("src/main/resources/public/")
         } else {
